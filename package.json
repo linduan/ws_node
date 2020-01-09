@@ -6,7 +6,6 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "serve": "node server.js",
     "dev": "node nodejs_ws.js",
     "io": "node io.js"
   },
