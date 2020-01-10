@@ -5,7 +5,7 @@ let id = 0
 io.on('connection', socket => { 
   // 发送消息到当前客户端
   socket.send('欢迎加入！')
-  
+  id = id || socket.id
   // 监听消息事件
   socket.on('message', msg => {
     switch (msg) {
@@ -21,6 +21,15 @@ io.on('connection', socket => {
         // 向自身发送消息
         socket.send('向自身发送的消息...')
         break
+      case '3':
+        // 查询房间id
+        socket.send(`本房间id: ${socket.id}`)
+        break;
+      case '4':
+        // 向其它房间发送消息
+        console.log(id)
+        socket.to(id).emit('message', `来自${socket.id}的消息...`)
+        break 
     }
   })
 })
